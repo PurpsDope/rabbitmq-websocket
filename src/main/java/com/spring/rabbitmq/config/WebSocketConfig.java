@@ -13,8 +13,13 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic");
-        config.setApplicationDestinationPrefixes("/app");
+        config.setApplicationDestinationPrefixes("/app")
+                .enableStompBrokerRelay("/topic")
+                .setRelayHost("localhost")
+                .setRelayPort(5672)
+                .setClientLogin("guest")
+                .setClientPasscode("guest");
+
     }
 
     @Override
